@@ -1,0 +1,12 @@
+.navbar{
+  background-color: #17a2b8;
+}
+.navbar-nav .nav-link {
+  margin-right: 10px;
+  font-size: large;
+  font-weight: 500;
+  color: black !important;
+}
+.btn {
+  font-size: large;
+}
