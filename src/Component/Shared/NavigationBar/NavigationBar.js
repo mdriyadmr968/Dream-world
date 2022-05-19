@@ -20,7 +20,7 @@ const NavigationBar = () => {
         <Navbar.Brand href="">
           <img
             className="w-50 mx-2"
-            style={{ height: "50px" }}
+            style={{ height: "50px", borderRadius:' 50% '}}
             src={logo}
             alt=""
           />

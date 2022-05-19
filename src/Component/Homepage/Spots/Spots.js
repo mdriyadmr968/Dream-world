@@ -68,6 +68,7 @@ const Spots = () => {
                     <Col className="text-right">
                       <button
                         onClick={() => {
+                          // navigate(`/spotDetail/${data._id}`, {
                           navigate(`/spotDetail/${data._id}`, {
                             replace: true,
                           });
