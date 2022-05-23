@@ -7,21 +7,47 @@ import NavigationBar from "./Component/Shared/NavigationBar/NavigationBar";
 import NotFound from '../src/Component/NotFound/Notfound'
 import Login from "./Component/Login/Login";
 import SpotDetail from "./Component/Homepage/SpotDetail/SpotDetail";
+import RequireAuth from "./Component/RequireAuth/RequireAuth";
+import { createContext, useState } from "react";
 
+
+export const UserContext = createContext();
+export const UserData = createContext();
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState({});
+  const [user, setUser] = useState({
+    isSignedIn: false,
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    error: "",
+    success: false,
+  });
   return (
     <div className="App">
-      <Router>
-        <NavigationBar></NavigationBar>
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/home" element={<Home />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/spotDetail/:id" element={<SpotDetail />}></Route>
-          <Route path="*" element={<NotFound />}></Route>
-        </Routes>
-        <Footer></Footer>
-      </Router>
+      <UserData.Provider value={[user, setUser]}>
+        <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+          <Router>
+            <NavigationBar></NavigationBar>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/home" element={<Home />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route
+                path="/spotDetail/:id"
+                element={
+                  <RequireAuth>
+                    <SpotDetail />
+                  </RequireAuth>
+                }
+              ></Route>
+              <Route path="*" element={<NotFound />}></Route>
+            </Routes>
+            <Footer></Footer>
+          </Router>
+        </UserContext.Provider>
+      </UserData.Provider>
     </div>
   );
 }
