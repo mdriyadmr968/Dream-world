@@ -9,6 +9,7 @@ import Login from "./Component/Login/Login";
 import SpotDetail from "./Component/Homepage/SpotDetail/SpotDetail";
 import RequireAuth from "./Component/RequireAuth/RequireAuth";
 import { createContext, useState } from "react";
+import MyOrders from "./Component/Dashboard/MyOrders/MyOrders";
 
 
 export const UserContext = createContext();
@@ -39,6 +40,14 @@ function App() {
                 element={
                   <RequireAuth>
                     <SpotDetail />
+                  </RequireAuth>
+                }
+              ></Route>
+              <Route
+                path="/myOrders"
+                element={
+                  <RequireAuth>
+                    <MyOrders />
                   </RequireAuth>
                 }
               ></Route>

@@ -20,7 +20,7 @@ const NavigationBar = () => {
         <Navbar.Brand href="">
           <img
             className="w-50 mx-2"
-            style={{ height: "50px", borderRadius:' 50% '}}
+            style={{ height: "50px", borderRadius: " 50% " }}
             src={logo}
             alt=""
           />
@@ -35,7 +35,10 @@ const NavigationBar = () => {
             <Nav.Link href="" onClick={() => navigate("/", { replace: true })}>
               Home
             </Nav.Link>
-            <Nav.Link href="" onClick={() => navigate("/", { replace: true })}>
+            <Nav.Link
+              href=""
+              onClick={() => navigate("/myOrders", { replace: true })}
+            >
               My Orders
             </Nav.Link>
             <Nav.Link href="" onClick={() => navigate("/", { replace: true })}>
@@ -43,7 +46,6 @@ const NavigationBar = () => {
             </Nav.Link>
             <Nav.Link>{user?.displayName && user.displayName} </Nav.Link>
             {user?.uid ? (
-              // <button onClick={() => signOut(auth)}>sign out</button>
               <Nav.Link href="" onClick={() => signOut(auth)}>
                 logOut
               </Nav.Link>
