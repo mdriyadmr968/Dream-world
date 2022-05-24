@@ -4,13 +4,14 @@ import Home from "./Component/Homepage/Home/Home";
 import Footer from "./Component/Shared/Footer/Footer";
 import { BrowserRouter as Router } from "react-router-dom";
 import NavigationBar from "./Component/Shared/NavigationBar/NavigationBar";
-import NotFound from '../src/Component/NotFound/Notfound'
+import NotFound from "../src/Component/NotFound/Notfound";
 import Login from "./Component/Login/Login";
 import SpotDetail from "./Component/Homepage/SpotDetail/SpotDetail";
 import RequireAuth from "./Component/RequireAuth/RequireAuth";
-import { createContext, useState } from "react";
 import MyOrders from "./Component/Dashboard/MyOrders/MyOrders";
-
+import Bookings from "./Component/Dashboard/Bookings/Bookings";
+import { createContext, useState } from "react";
+import AddSpot from "./Component/Dashboard/AddSpot/AddSpot";
 
 export const UserContext = createContext();
 export const UserData = createContext();
@@ -43,14 +44,10 @@ function App() {
                   </RequireAuth>
                 }
               ></Route>
-              <Route
-                path="/myOrders"
-                element={
-                  <RequireAuth>
-                    <MyOrders />
-                  </RequireAuth>
-                }
-              ></Route>
+              <Route path="/myOrders" element={<MyOrders />}></Route>
+              <Route path="/addSpot" element={<AddSpot />}></Route>
+              <Route path="/bookings" element={<Bookings />}></Route>
+
               <Route path="*" element={<NotFound />}></Route>
             </Routes>
             <Footer></Footer>

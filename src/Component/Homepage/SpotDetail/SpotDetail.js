@@ -1,12 +1,9 @@
-import { getAuth } from "firebase/auth";
+
 import React, { useContext, useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../../App";
-import app from "../../../firebase.init";
 import "./SpotDetail.css";
-
-const auth = getAuth(app);
 
 const SpotDetail = () => {
   const [loggedInUser] = useContext(UserContext);

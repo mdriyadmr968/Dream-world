@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import "./Bookings.css";
 import logo from "../../../Images/Logo (1).png";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,28 +12,41 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../../../App";
 
-
-
-const MyOrder = () => {
+const Bookings = () => {
   const [loggedInUser] = useContext(UserContext);
-  console.log(loggedInUser);
-  const [myOrders, setMyOrders] = useState([]);
+  const [bookingInfo, setBookingInfo] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/bookings?email=${loggedInUser.email}`)
+    fetch("https://fierce-hamlet-20637.herokuapp.com/allBookings")
       .then((res) => res.json())
-      .then((data) => setMyOrders(data));
-  }, [loggedInUser.email]);
+      .then((data) => setBookingInfo(data));
+  }, []);
+
+  const statuses = ["Pending", "Confirmed"];
+  const statusChange = (id, e) => {
+    const updatedBookingInfo = { status: e.target.value };
+
+    fetch(`http://localhost:5000/update/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedBookingInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
   return (
     <div className="bookings">
       <div className="row">
         <div className="col-md-2 col-sm-12">
           <div className="sidebar">
-            <div className=" h-75 w-75">
+            <div className="logo h-75 w-75">
               <Link to="/">
                 <img src={logo} alt="logo" />
               </Link>
             </div>
-            <div className="dashboard__link mt-5">
+            <div className="mt-5">
               <p>
                 <Link className="link" to="bookings">
                   <span>
@@ -67,7 +81,7 @@ const MyOrder = () => {
         </div>
         <div className="col-md-10 col-sm-12">
           <div className="sec__title d-flex">
-            <h3 className="pl-3">My Order Houses</h3>
+            <h3 className="pl-3">Booking List</h3>
             <h5 className="ml-auto user__name">{loggedInUser.name}</h5>
           </div>
           <div className="dashboard__content">
@@ -75,34 +89,44 @@ const MyOrder = () => {
               <Table borderless size="sm">
                 <thead className="mt-3">
                   <tr className="tableRow">
-                    <th style={{ width: "40%" }} className="pl-3">
-                      {" "}
-                      Name
-                    </th>
-                    <th style={{ width: "30%" }} className="pl-3 text-center">
-                      Price
-                    </th>
-                    <th style={{ width: "30%" }} className="pl-3 text-center">
-                      Action
-                    </th>
+                    <th className="pl-3">Name</th>
+                    <th className="pl-3">Email</th>
+                    <th className="pl-3">Phone No</th>
+                    <th className="pl-3">Message</th>
+                    <th className="pl-3">Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {myOrders.map((order) => (
-                    <tr key={order._id}>
-                      <td style={{ width: "40%" }} className="pl-3 pt-3">
-                        {order.spot}
+                  {bookingInfo.map((booking) => (
+                    <tr>
+                      <td style={{ width: "20%" }} className="pl-3">
+                        {booking.name}
                       </td>
-                      <td
-                        style={{ width: "30%" }}
-                        className="pl-3 pt-3 text-center"
-                      >
-                        {order.price}
+                      <td style={{ width: "20%" }} className="pl-3">
+                        {booking.email}
                       </td>
-                      <td style={{ width: "30%" }} className="pl-3 text-center">
-                        <button className="btn greenBtn mt-2 btn-sm">
-                          {order.status}
-                        </button>
+                      <td style={{ width: "10%" }} className="pl-3">
+                        {booking.number}
+                      </td>
+                      <td style={{ width: "25%" }} className="pl-3">
+                        {booking.message}
+                      </td>
+                      <td style={{ width: "12%" }} className="pl-3">
+                        <select
+                          className="form-control"
+                          onChange={(e) => statusChange(booking._id, e)}
+                          name="status"
+                        >
+                          {statuses.map((option) => (
+                            <option
+                              key={option}
+                              value={option}
+                              selected={option === booking.status}
+                            >
+                              {option}
+                            </option>
+                          ))}
+                        </select>
                       </td>
                     </tr>
                   ))}
@@ -116,4 +140,4 @@ const MyOrder = () => {
   );
 };
 
-export default MyOrder;
+export default Bookings;
