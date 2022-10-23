@@ -1,34 +1,73 @@
-.banner_video {
+.carousel-image {
+  filter: brightness(40%);
+}
+.carousel-caption {
+  width: 40%;
+  margin: auto;
   position: absolute;
-  width: 100%;
-  height: 100vh;
-  z-index: -1;
+  top: 35%;
 }
-.banner-text {
-    color: white;
-    letter-spacing: 5px;
-    padding-top: 10%;
+.carousel-caption h1 {
+  font-weight: 700;
+  font-size: 3rem;
 }
-.btn-banner {
-  background-color: rgb(71, 160, 255);
-  padding: 2% 8%;
-  border-radius: 10px;
-  border: none;
-  color: white;
-  font-size: 1.2em;
-  margin: 5%;
+.carousel-caption p {
+  font-weight: 400;
+  font-size: 1rem;
+}
+.banner-button {
+  display: inline-block;
+  background: #FF4838;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 20px 30px;
+  border-radius: 5px;
+  box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  -webkit-transition: all ease-in-out 300ms;
+  transition: all ease-in-out 300ms;
+}
+.banner-button:hover {
+  box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
+  -webkit-transform: translate(0px, -10px) scale(1.2);
+          transform: translate(0px, -10px) scale(1.2);
+}
 
-}
 
-@media (min-aspect-ratio: 16/9) {
-  .banner_video {
-    width: 100%;
-    height: auto;
-  }
+
+
+
+@media only screen and (max-width: 700px) {
+  .carousel-caption {
+  width: 70%;
+  margin: auto;
+  position: absolute;
+  top: 25%;
 }
-@media (max-aspect-ratio: 16/9) {
-  .banner_video {
-    width: auto;
-    height: 100%;
-  }
+.carousel-caption h1 {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.carousel-caption p {
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+.banner-button {
+  display: inline-block;
+  background: #FF4838;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  -webkit-transition: all ease-in-out 300ms;
+  transition: all ease-in-out 300ms;
+}
+.banner-button:hover {
+  box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
+  -webkit-transform: translate(0px, -10px) scale(1.2);
+          transform: translate(0px, -10px) scale(1.2);
+}
+  
 }

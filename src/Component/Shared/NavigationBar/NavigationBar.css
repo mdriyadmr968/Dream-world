@@ -1,12 +1,28 @@
-.navbar{
-  background-color: #17a2b8;
+
+.project-name {
+  color: #ff4838;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 25px;
 }
 .navbar-nav .nav-link {
   margin-right: 10px;
-  font-size: large;
-  font-weight: 500;
-  color: black !important;
+  font-weight: 700;
 }
 .btn {
   font-size: large;
+}
+
+.nav-fixed {
+  background: rgba(0, 0, 0, 0.2);
+  color: red;
+  width: 100%;
+  position: fixed;
+  transition: 0.3s ease-in-out;
+}
+
+.nav-active {
+  background: rgba(0, 0, 0, 0.85);
+  color: black !important;
+  box-shadow: 5px -1px 12px -5px grey;
 }

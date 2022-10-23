@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Merriweather&family=PT+Serif:ital@0;1&family=Playfair+Display&display=swap');
+
 .App {
   text-align: center;
 }
@@ -36,3 +38,9 @@
     transform: rotate(360deg);
   }
 }
+
+* {
+  font-family: 'Barlow', sans-serif;
+}
+
+

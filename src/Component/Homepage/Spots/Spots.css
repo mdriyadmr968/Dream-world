@@ -1,8 +1,43 @@
 .spot-container {
-  margin-top: 30%;
+  margin-top: 10%;
+}
+.spot-header{
+  font-weight: 800;
+  font-size: 35px;
+  color: #2d373c;
+}
+.spot-title {
+  font-weight: 400;
+  font-size: 16px;
+  color: #666666;
+
 }
 .cards-container {
   text-align: left;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   margin: 3%;
+}
+.card-img-top {
+  width: 100px !important;
+  height: 100px !important;
+}
+.package-price{
+  font-size: 16px;
+  font-weight: 500;
+}
+.priceNumber{
+  color: #ff4838;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+@media only screen and (max-width: 700px) {
+  .spot-container{
+    width: 100%;
+  }
+  .cards-container{
+    width: 100%;
+    margin:0 auto 5%;
+  }
 }

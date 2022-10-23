@@ -1,21 +1,61 @@
 import React from "react";
-import banner_video from '../../../Images/Home - Adventure Tours.mp4'
-import './Banner.css'
+import { Carousel } from "react-bootstrap";
+import "./Banner.css";
+
+import image1 from "../../../Images/background1.jpg";
+import image2 from "../../../Images/background2.jpg";
+import image3 from "../../../Images/background3.jpg";
 
 const Banner = () => {
   return (
-    <div className="banner">
-      <div className="banner_video">
-        <video src={banner_video} autoPlay loop muted></video>
-      </div>
-
-      <div className="banner-text">
-        <h3>Find your special tour today</h3>
-        <h1>with Dream World</h1>
-        <button type="button" class=" btn-banner">
-          view tours
-        </button>
-      </div>
+    <div>
+      <Carousel fade={true} pause={false} className="Carousel-container">
+        <Carousel.Item interval={2000}>
+          <img
+            className="d-block w-100 carousel-image"
+            src={image1}
+            alt="First slide"
+          />
+          <Carousel.Caption className="captions-styles">
+            <h1>ENJOY YOU'R HOLIDAY WITH DREAM WORLD</h1>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Consectetur, dolor.
+            </p>
+            <div class="banner-button">View Adventure</div>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={2000}>
+          <img
+            className="d-block w-100 carousel-image"
+            src={image2}
+            alt="Third slide"
+          />
+          <Carousel.Caption className="captions-styles">
+            <h1>LET'S YOUR JOURNEY BEGINS WITH DREAM WORLD</h1>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis
+              assumenda doloremque itaque amet iure optio?
+            </p>
+            <div class="banner-button">View Adventure</div>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={2000}>
+          <img
+            className="d-block w-100 carousel-image"
+            src={image3}
+            alt="Third slide"
+          />
+          <Carousel.Caption className="captions-styles">
+            <h1>YOUR JOURNEY BEGINS</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+              expedita eaque quis cum numquam sapiente?
+            </p>
+            <div class="banner-button">View Adventure</div>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
     </div>
   );
 };

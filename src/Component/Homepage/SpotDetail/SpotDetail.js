@@ -77,7 +77,7 @@ const SpotDetail = () => {
               </Col>
               <Col>
                 <h2 className="font-weight-bold indigoText text-right">
-                  {spot.price}
+                  {spot.price}$
                 </h2>
               </Col>
             </Row>
@@ -88,9 +88,9 @@ const SpotDetail = () => {
             </p>
             <h3 className="font-weight-bold darkIndigoText">Price Detail -</h3>
             <p className="text-secondary">
-              fees/tour: BDT5500 (negotiable) <br />
-              Service Charge : 8,000/= Tk per package, subject to change <br />
-              Insurance : BDT 5000.
+              fees/tour: 30$ (negotiable) <br />
+              Service Charge : 10$ per package, subject to change <br />
+              Insurance : 100%.
             </p>
           </Col>
           <Col md={4}>

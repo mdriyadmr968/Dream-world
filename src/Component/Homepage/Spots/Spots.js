@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import loading from '../../../Images/loading.gif'
+import loading from "../../../Images/loading.gif";
 
 import {
   faStar,
@@ -23,10 +23,9 @@ const Spots = () => {
   }, []);
   return (
     <Container className="spot-container">
-      <h5 className="indigoText text-left mt-5 ">Book Your Favourite place</h5>
-      <h2 className="darkIndigoText text-center font-weight-bold">
-        best tourist package
-        <br /> available for you
+      <h5 className=" spot-header text-left ">Top Destination</h5>
+      <h2 className="spot-title mb-5">
+        select the best best tourist package suitable for you
       </h2>
 
       {spotData.length === 0 ? (
@@ -37,9 +36,13 @@ const Spots = () => {
         <Row className="">
           {spotData.map((data) => (
             <Col key={data._id} sm={4}>
-              <div className="card cards-container" style={{ width: "21rem" }}>
+              <div
+                className="card cards-container"
+                style={{ width: "21rem", height: "28rem", borderRadius: "2%" }}
+              >
                 <Image
                   class="card-img-top"
+                  style={{ width: "100%", height: "45%", borderRadius: "2%" }}
                   src={data.img}
                   alt="Card image cap"
                 />
@@ -63,7 +66,11 @@ const Spots = () => {
                   </Row>
                   <Row className="mt-4">
                     <Col>
-                      <h2 className=" indigoText">{data.price}</h2>
+                      <h2 className="package-price">
+                        From <br />
+                        <span className="priceNumber">{data.price}$ </span> Per
+                        Person
+                      </h2>
                     </Col>
                     <Col className="text-right">
                       <button
