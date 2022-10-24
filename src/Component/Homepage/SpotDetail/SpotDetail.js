@@ -51,7 +51,7 @@ const SpotDetail = () => {
         if (data) {
           window.alert("Order placed Succesfully");
         } else {
-          window.alert("Order Placed succesfully");
+          window.alert("Order didn't Placed succesfully");
         }
       });
 

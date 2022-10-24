@@ -10,8 +10,8 @@ import SpotDetail from "./Component/Homepage/SpotDetail/SpotDetail";
 import RequireAuth from "./Component/RequireAuth/RequireAuth";
 import MyOrders from "./Component/Dashboard/MyOrders/MyOrders";
 import Bookings from "./Component/Dashboard/Bookings/Bookings";
+import AddSpot from "./Component/Dashboard/AddSpot/AddSpot"
 import { createContext, useState } from "react";
-import AddSpot from "./Component/Dashboard/AddSpot/AddSpot";
 
 export const UserContext = createContext();
 export const UserData = createContext();
@@ -44,9 +44,9 @@ function App() {
                   </RequireAuth>
                 }
               ></Route>
-              <Route path="/myOrders" element={<MyOrders />}></Route>
-              <Route path="/addSpot" element={<AddSpot />}></Route>
+              <Route path="/myOrders/:email" element={<MyOrders />}></Route>
               <Route path="/bookings" element={<Bookings />}></Route>
+              <Route path="/addSpot" element={<AddSpot/>}></Route>
 
               <Route path="*" element={<NotFound />}></Route>
             </Routes>

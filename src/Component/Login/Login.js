@@ -40,8 +40,8 @@ const Login = () => {
   };
   return (
     <div>
-      <Container className="text-center">
-        <Row className="justify-content-md-center mt-3">
+      <Container className="text-center login-container">
+        <Row className="justify-content-md-center mt-5">
           <div className="login-card mt-5">
             <h3>Login With</h3>
             <Button onClick={handleGoogleSignIn} variant="light">

@@ -34,7 +34,6 @@ const NavigationBar = () => {
         expand="md"
       >
         <Navbar.Brand href="" className="text-black">
-          
           <span className="project-name">Dream World</span>
         </Navbar.Brand>
         <Navbar.Toggle
@@ -53,14 +52,16 @@ const NavigationBar = () => {
             <Nav.Link
               href=""
               className="text-light"
-              onClick={() => navigate("/myOrders", { replace: true })}
+              onClick={() =>
+                navigate(`/myOrders/${user.email}`, { replace: true })
+              }
             >
               My Orders
             </Nav.Link>
             <Nav.Link
               href=""
               className="text-light"
-              onClick={() => navigate("/", { replace: true })}
+              onClick={() => navigate("/bookings", { replace: true })}
             >
               Manage All Orders
             </Nav.Link>

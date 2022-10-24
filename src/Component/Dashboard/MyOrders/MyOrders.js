@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from 'react';
+import { useContext, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import logo from "../../../Images/Logo (1).png";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -11,17 +12,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../../../App";
 
-
-
-const MyOrder = () => {
+const MyOrders = () => {
+  const {email} =useParams();
   const [loggedInUser] = useContext(UserContext);
-  console.log(loggedInUser);
   const [myOrders, setMyOrders] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/bookings?email=${loggedInUser.email}`)
+    fetch(
+      `https://fierce-hamlet-20637.herokuapp.com/bookings?email=${email}`
+    )
       .then((res) => res.json())
       .then((data) => setMyOrders(data));
-  }, [loggedInUser.email]);
+  }, [email]);
   return (
     <div className="bookings">
       <div className="row">
@@ -34,7 +35,7 @@ const MyOrder = () => {
             </div>
             <div className="dashboard__link mt-5">
               <p>
-                <Link className="link" to="bookings">
+                <Link className="link" to="/bookings">
                   <span>
                     <FontAwesomeIcon icon={faAddressBook} size="xs" /> Booking
                     list
@@ -42,14 +43,14 @@ const MyOrder = () => {
                 </Link>
               </p>
               <p>
-                <Link className="link" to="addSpot">
+                <Link className="link" to="/addSpot">
                   <span>
                     <FontAwesomeIcon icon={faPlus} size="xs" /> Add Tourist Spot
                   </span>
                 </Link>
               </p>
               <p>
-                <Link className="link" to="myOrders">
+                <Link className="link" to="/myOrders">
                   <span className="booking-link">
                     <FontAwesomeIcon icon={faUser} size="xs" /> My Orders
                   </span>
@@ -116,4 +117,4 @@ const MyOrder = () => {
   );
 };
 
-export default MyOrder;
+export default MyOrders;
