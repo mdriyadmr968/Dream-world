@@ -9,8 +9,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAddressBook, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faHome, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Col, Form, Row } from "react-bootstrap";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { getAuth } from "firebase/auth";
+import app from "../../../firebase.init";
+
+const auth = getAuth(app);
+
 const AddSpot = () => {
   const { register, handleSubmit, reset } = useForm();
+  const [user] = useAuthState(auth);
   const onSubmit = (data) => {
     console.log(data);
     axios.post("http://localhost:5000/services", data).then((res) => {
@@ -53,7 +60,7 @@ const AddSpot = () => {
                   </Link>
                 </p>
                 <p>
-                  <Link className="link" to="/myOrders">
+                  <Link className="link" to={`/myOrders/${user.email}`}>
                     <span className="booking-link">
                       <FontAwesomeIcon icon={faUser} size="xs" /> My Orders
                     </span>
@@ -78,11 +85,14 @@ const AddSpot = () => {
                 <Row>
                   <Col>
                     <Form.Label className="mt-1">Title</Form.Label>
-                    <input {...register("title")} placeholder="Enter title" />
+                    <Form.Control
+                      {...register("title")}
+                      placeholder="Enter title"
+                    />
                   </Col>
                   <Col>
                     <Form.Label className="mt-1">place</Form.Label>
-                    <input
+                    <Form.Control
                       type="number"
                       {...register("places")}
                       placeholder="places"
@@ -92,11 +102,14 @@ const AddSpot = () => {
                 <Row>
                   <Col>
                     <Form.Label className="mt-1">Image</Form.Label>
-                    <input {...register("img")} placeholder="Enter image url" />
+                    <Form.Control
+                      {...register("img")}
+                      placeholder="Enter image url"
+                    />
                   </Col>
                   <Col>
                     <Form.Label className="mt-1">Duration</Form.Label>
-                    <input
+                    <Form.Control
                       type="number"
                       {...register("duration")}
                       placeholder="duration"
@@ -106,11 +119,11 @@ const AddSpot = () => {
                 <Row>
                   <Col>
                     <Form.Label className="mt-1">price</Form.Label>
-                    <input {...register("price")} placeholder="price" />
+                    <Form.Control {...register("price")} placeholder="price" />
                   </Col>
                   <Col>
                     <Form.Label className="mt-1">rating</Form.Label>
-                    <input
+                    <Form.Control
                       type="number"
                       {...register("rating")}
                       placeholder="rating"
@@ -120,14 +133,19 @@ const AddSpot = () => {
                 <Row>
                   <Col>
                     <Form.Label className="mt-1">Details</Form.Label>
-                    <textarea
+                    <Form.Control
+                      as="textarea"
                       {...register("description")}
                       placeholder="Description"
+                      rows={3}
                     />
                   </Col>
                 </Row>
-
-                <input type="submit" />
+                <div className="text-right mt-5 mr-1">
+                  <button type="submit" className="btn btn-danger">
+                    Submit
+                  </button>
+                </div>
               </Form>
             </div>
           </div>

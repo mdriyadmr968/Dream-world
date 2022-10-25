@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useContext, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import logo from "../../../Images/Logo (1).png";
@@ -11,15 +11,27 @@ import {
   faAddressBook,
 } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../../../App";
+import { useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
+import app from "../../../firebase.init";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+
+const auth = getAuth(app);
+
 
 const MyOrders = () => {
-  const {email} =useParams();
+  
   const [loggedInUser] = useContext(UserContext);
   const [myOrders, setMyOrders] = useState([]);
+
+  const [user] = useAuthState(auth);
+
+
+  const navigate = useNavigate();
+  const { email } = useParams();
   useEffect(() => {
-    fetch(
-      `https://fierce-hamlet-20637.herokuapp.com/bookings?email=${email}`
-    )
+    fetch(`https://fierce-hamlet-20637.herokuapp.com/bookings?email=${email}`)
       .then((res) => res.json())
       .then((data) => setMyOrders(data));
   }, [email]);
@@ -50,7 +62,7 @@ const MyOrders = () => {
                 </Link>
               </p>
               <p>
-                <Link className="link" to="/myOrders">
+                <Link className="link" to={`/myOrders/${user.email}`}>
                   <span className="booking-link">
                     <FontAwesomeIcon icon={faUser} size="xs" /> My Orders
                   </span>
