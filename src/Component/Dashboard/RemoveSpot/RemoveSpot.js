@@ -1,38 +1,49 @@
 import React from "react";
-import { useContext, useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "./RemoveSpot.css";
 import logo from "../../../Images/Logo (1).png";
-import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlus,
-  faHome,
-  faUser,
-  faAddressBook,
-} from "@fortawesome/free-solid-svg-icons";
-import { UserContext } from "../../../App";
-import { getAuth } from "firebase/auth";
+import { faAddressBook, faUser } from "@fortawesome/free-regular-svg-icons";
+import { faHome, faPlus } from "@fortawesome/free-solid-svg-icons";
 import app from "../../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
-
+import { getAuth } from "firebase/auth";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Table } from "react-bootstrap";
 
 const auth = getAuth(app);
-
-
-const MyOrders = () => {
-  
-  const [loggedInUser] = useContext(UserContext);
-  const [myOrders, setMyOrders] = useState([]);
-
+const RemoveSpot = () => {
   const [user] = useAuthState(auth);
+  //   console.log(user);
+  const [spotsInfo, setSpotsInfo] = useState([]);
 
-
-  const { email } = useParams();
   useEffect(() => {
-    fetch(`https://intense-eyrie-89942.herokuapp.com/bookings?email=${email}`)
+    fetch("https://intense-eyrie-89942.herokuapp.com/spots")
       .then((res) => res.json())
-      .then((data) => setMyOrders(data));
-  }, [email]);
+      .then((data) => setSpotsInfo(data));
+  }, []);
+
+  //   delete an user
+
+  const handleDeleteSpot = (id) => {
+    const proceed = window.confirm("Are you sure, you want to delete?");
+    if (proceed) {
+      const url = `https://intense-eyrie-89942.herokuapp.com/removeSpot/${id}`;
+      fetch(url, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            alert("deleted successfully");
+            const remainingUsers = spotsInfo.filter((user) => user._id !== id);
+            setSpotsInfo(remainingUsers);
+          }
+        });
+    }
+  };
+
   return (
     <div className="bookings">
       <div className="row">
@@ -68,7 +79,7 @@ const MyOrders = () => {
                 </Link>
               </p>
               <p>
-                <Link className="link" to={`/myOrders/${user.email}`}>
+                <Link className="link" to={`/myOrders`}>
                   <span className="booking-link">
                     <FontAwesomeIcon icon={faUser} size="xs" /> My Orders
                   </span>
@@ -86,8 +97,7 @@ const MyOrders = () => {
         </div>
         <div className="col-md-10 col-sm-12">
           <div className="sec__title d-flex">
-            <h3 className="pl-3">My Order Houses</h3>
-            <h5 className="ml-auto user__name">{loggedInUser.name}</h5>
+            <h3 className="pl-3">Remove tour spot</h3>
           </div>
           <div className="dashboard__content">
             <div className="table__content">
@@ -96,31 +106,25 @@ const MyOrders = () => {
                   <tr className="tableRow">
                     <th style={{ width: "40%" }} className="pl-3">
                       {" "}
-                      Name
+                      place
                     </th>
-                    <th style={{ width: "30%" }} className="pl-3 text-center">
-                      Price
-                    </th>
-                    <th style={{ width: "30%" }} className="pl-3 text-center">
-                      Action
+                    <th style={{ width: "40%" }} className="pl-3">
+                      {" "}
+                      remove
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {myOrders.map((order) => (
-                    <tr key={order._id}>
+                  {spotsInfo.map((singleSpot) => (
+                    <tr key={singleSpot._id}>
                       <td style={{ width: "40%" }} className="pl-3 pt-3">
-                        {order.spot}
+                        {singleSpot.places}
                       </td>
-                      <td
-                        style={{ width: "30%" }}
-                        className="pl-3 pt-3 text-center"
-                      >
-                        {order.price}
-                      </td>
-                      <td style={{ width: "30%" }} className="pl-3 text-center">
-                        <button className="btn greenBtn mt-2 btn-sm">
-                          {order.status}
+                      <td style={{ width: "40%" }} className="pl-3 pt-3">
+                        <button
+                          onClick={() => handleDeleteSpot(singleSpot._id)}
+                        >
+                          remove
                         </button>
                       </td>
                     </tr>
@@ -135,4 +139,4 @@ const MyOrders = () => {
   );
 };
 
-export default MyOrders;
+export default RemoveSpot;

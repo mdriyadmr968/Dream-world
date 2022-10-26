@@ -20,16 +20,18 @@ const AddSpot = () => {
   const [user] = useAuthState(auth);
   const onSubmit = (data) => {
     console.log(data);
-    axios.post("http://localhost:5000/services", data).then((res) => {
-      console.log(res);
+    axios
+      .post("https://intense-eyrie-89942.herokuapp.com/services", data)
+      .then((res) => {
+        console.log(res);
 
-      if (res.data.insertedId) {
-        alert("New spot added successfully");
-        reset();
-      } else {
-        alert("FAiled");
-      }
-    });
+        if (res.data.insertedId) {
+          alert("New spot added successfully");
+          reset();
+        } else {
+          alert("FAiled");
+        }
+      });
   };
   return (
     <div>
@@ -156,15 +158,3 @@ const AddSpot = () => {
 };
 
 export default AddSpot;
-
-{
-  /* <form onSubmit={handleSubmit(onSubmit)}>
-  <input
-    {...register("name", { required: true, maxLength: 20 })}
-    placeholder="Name"
-  />
-  <textarea {...register("description")} placeholder="Description" />
-  <input type="number" {...register("price")} placeholder="price" />
-  <input type="submit" />
-</form>; */
-}

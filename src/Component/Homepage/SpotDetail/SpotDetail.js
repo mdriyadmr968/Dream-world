@@ -11,7 +11,7 @@ const SpotDetail = () => {
   const [bookingInfo, setBookingInfo] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:5000/spots")
+    fetch("https://intense-eyrie-89942.herokuapp.com/spots")
       .then((res) => res.json())
       .then((data) => setSpotData(data));
   }, []);
@@ -39,7 +39,7 @@ const SpotDetail = () => {
     formData.append("price", spot.price);
     formData.append("status", bookingInfo.status);
 
-    fetch("https://fierce-hamlet-20637.herokuapp.com/addBooking", {
+    fetch("https://intense-eyrie-89942.herokuapp.com/addBooking", {
       method: "POST",
       body: formData,
     })

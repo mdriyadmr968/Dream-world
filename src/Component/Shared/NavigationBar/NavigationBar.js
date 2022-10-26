@@ -2,7 +2,6 @@ import { Nav, Navbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import logo from "../../../Images/Logo (1).png";
 import "./NavigationBar.css";
 import { getAuth, signOut } from "firebase/auth";
 import app from "../../../firebase.init";

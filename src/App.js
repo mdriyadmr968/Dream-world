@@ -12,6 +12,7 @@ import MyOrders from "./Component/Dashboard/MyOrders/MyOrders";
 import Bookings from "./Component/Dashboard/Bookings/Bookings";
 import AddSpot from "./Component/Dashboard/AddSpot/AddSpot"
 import { createContext, useState } from "react";
+import RemoveSpot from "./Component/Dashboard/RemoveSpot/RemoveSpot";
 
 export const UserContext = createContext();
 export const UserData = createContext();
@@ -47,6 +48,7 @@ function App() {
               <Route path="/myOrders/:email" element={<MyOrders />}></Route>
               <Route path="/bookings" element={<Bookings />}></Route>
               <Route path="/addSpot" element={<AddSpot/>}></Route>
+              <Route path="/removeSpot" element={<RemoveSpot/>}></Route>
 
               <Route path="*" element={<NotFound />}></Route>
             </Routes>

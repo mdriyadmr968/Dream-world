@@ -17,7 +17,7 @@ const Spots = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/spots")
+    fetch("https://intense-eyrie-89942.herokuapp.com/spots")
       .then((res) => res.json())
       .then((data) => setSpotData(data));
   }, []);

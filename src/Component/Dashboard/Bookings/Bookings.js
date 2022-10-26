@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import "./Bookings.css";
-import logo from "../../../Images/logo.PNG";
+import logo from "../../../Images/Logo (1).png";
 
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -24,7 +24,7 @@ const Bookings = () => {
   const [user] = useAuthState(auth);
 
   useEffect(() => {
-    fetch("https://fierce-hamlet-20637.herokuapp.com/allBookings")
+    fetch("https://intense-eyrie-89942.herokuapp.com/allBookings")
       .then((res) => res.json())
       .then((data) => setBookingInfo(data));
   }, []);
@@ -33,7 +33,7 @@ const Bookings = () => {
   const statusChange = (id, e) => {
     const updatedBookingInfo = { status: e.target.value };
 
-    fetch(`https://fierce-hamlet-20637.herokuapp.com/update/${id}`, {
+    fetch(`https://intense-eyrie-89942.herokuapp.com/update/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBookingInfo),
