@@ -48,3 +48,6 @@
   border: none;
   outline: none;
 }
+.dashboard__header {
+  margin: auto;
+}

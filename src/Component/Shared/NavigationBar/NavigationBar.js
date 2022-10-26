@@ -12,12 +12,26 @@ const auth = getAuth(app);
 const NavigationBar = () => {
   const [user] = useAuthState(auth);
   let navigate = useNavigate();
-  
 
-  // function for navbars dynamic background color 
+  const handleDashboardClick = () => {
+    if (user) {
+      navigate(`/myOrders/${user.email}`, { replace: true });
+    } else {
+      navigate(`/login`, { replace: true });
+    }
+  };
+  const handleManageClick = () => {
+    if (user) {
+      navigate(`/bookings`, { replace: true });
+    } else {
+      navigate(`/login`, { replace: true });
+    }
+  };
+
+  // function for navbars dynamic background color
   const navbar = document.querySelector(".nav-fixed");
   window.onscroll = () => {
-    if (window.scrollY > 300) {
+    if (window.scrollY > 5) {
       navbar.classList.add("nav-active");
     } else {
       navbar.classList.remove("nav-active");
@@ -51,16 +65,14 @@ const NavigationBar = () => {
             <Nav.Link
               href=""
               className="text-light"
-              onClick={() =>
-                navigate(`/myOrders/${user.email}`, { replace: true })
-              }
+              onClick={handleDashboardClick}
             >
-              My Orders
+              Dashboard
             </Nav.Link>
             <Nav.Link
               href=""
               className="text-light"
-              onClick={() => navigate("/bookings", { replace: true })}
+              onClick={handleManageClick}
             >
               Manage All Orders
             </Nav.Link>
@@ -73,7 +85,7 @@ const NavigationBar = () => {
                 className="text-light"
                 onClick={() => signOut(auth)}
               >
-                logOut
+                LogOut
               </Nav.Link>
             ) : (
               <Nav.Link

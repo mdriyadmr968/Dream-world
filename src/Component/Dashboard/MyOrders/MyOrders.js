@@ -9,6 +9,7 @@ import {
   faHome,
   faUser,
   faAddressBook,
+  faMinus,
 } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../../../App";
 import { getAuth } from "firebase/auth";
@@ -38,12 +39,12 @@ const MyOrders = () => {
       <div className="row">
         <div className="col-md-2 col-sm-12">
           <div className="sidebar">
-            <div className=" h-75 w-75">
+            <div className="logo">
               <Link to="/">
-                <img src={logo} alt="logo" />
+                <img className="h-75 w-75" src={logo} alt="logo" />
               </Link>
             </div>
-            <div className="dashboard__link mt-5">
+            <div className="dashboard__link mt-5" style={{ textAlign: "left" }}>
               <p>
                 <Link className="link" to="/bookings">
                   <span>
@@ -62,7 +63,7 @@ const MyOrders = () => {
               <p>
                 <Link className="link" to="/removeSpot">
                   <span>
-                    <FontAwesomeIcon icon={faPlus} size="xs" /> Remove Tourist
+                    <FontAwesomeIcon icon={faMinus} size="xs" /> Remove Tourist
                     Spot
                   </span>
                 </Link>
@@ -86,7 +87,9 @@ const MyOrders = () => {
         </div>
         <div className="col-md-10 col-sm-12">
           <div className="sec__title d-flex">
-            <h3 className="pl-3">My Order Houses</h3>
+            <h3 className="pl-3 dashboard__header">
+              Your Ordered tourist spot
+            </h3>
             <h5 className="ml-auto user__name">{loggedInUser.name}</h5>
           </div>
           <div className="dashboard__content">

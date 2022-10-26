@@ -10,7 +10,7 @@ import SpotDetail from "./Component/Homepage/SpotDetail/SpotDetail";
 import RequireAuth from "./Component/RequireAuth/RequireAuth";
 import MyOrders from "./Component/Dashboard/MyOrders/MyOrders";
 import Bookings from "./Component/Dashboard/Bookings/Bookings";
-import AddSpot from "./Component/Dashboard/AddSpot/AddSpot"
+import AddSpot from "./Component/Dashboard/AddSpot/AddSpot";
 import { createContext, useState } from "react";
 import RemoveSpot from "./Component/Dashboard/RemoveSpot/RemoveSpot";
 
@@ -45,10 +45,17 @@ function App() {
                   </RequireAuth>
                 }
               ></Route>
-              <Route path="/myOrders/:email" element={<MyOrders />}></Route>
+              <Route
+                path="/myOrders/:email"
+                element={
+                  <RequireAuth>
+                    <MyOrders />
+                  </RequireAuth>
+                }
+              ></Route>
               <Route path="/bookings" element={<Bookings />}></Route>
-              <Route path="/addSpot" element={<AddSpot/>}></Route>
-              <Route path="/removeSpot" element={<RemoveSpot/>}></Route>
+              <Route path="/addSpot" element={<AddSpot />}></Route>
+              <Route path="/removeSpot" element={<RemoveSpot />}></Route>
 
               <Route path="*" element={<NotFound />}></Route>
             </Routes>

@@ -10,6 +10,7 @@ import {
   faHome,
   faUser,
   faAddressBook,
+  faMinus,
 } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../../../App";
 import { getAuth } from "firebase/auth";
@@ -54,7 +55,7 @@ const Bookings = () => {
                 <img src={logo} alt="logo" />
               </Link>
             </div>
-            <div className="mt-5">
+            <div className="mt-5" style={{ textAlign: "left" }}>
               <p>
                 <Link className="link" to="/bookings">
                   <span>
@@ -71,8 +72,16 @@ const Bookings = () => {
                 </Link>
               </p>
               <p>
+                <Link className="link" to="/removeSpot">
+                  <span>
+                    <FontAwesomeIcon icon={faMinus} size="xs" /> Remove Tourist
+                    Spot
+                  </span>
+                </Link>
+              </p>
+              <p>
                 <Link className="link" to={`/myOrders/${user.email}`}>
-                  <span className="booking-link">
+                  <span className="booking-link ">
                     <FontAwesomeIcon icon={faUser} size="xs" /> My Orders
                   </span>
                 </Link>
@@ -89,7 +98,7 @@ const Bookings = () => {
         </div>
         <div className="col-md-10 col-sm-12">
           <div className="sec__title d-flex">
-            <h3 className="pl-3">Booking List</h3>
+            <h3 className="pl-3 dashboard__header">Booking List Of All Users</h3>
             <h5 className="ml-auto user__name">{loggedInUser.name}</h5>
           </div>
           <div className="dashboard__content">

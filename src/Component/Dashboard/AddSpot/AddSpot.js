@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAddressBook, faUser } from "@fortawesome/free-regular-svg-icons";
-import { faHome, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Col, Form, Row } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
@@ -44,7 +44,10 @@ const AddSpot = () => {
                   <img className="h-75 w-75" src={logo} alt="logo" />
                 </Link>
               </div>
-              <div className="dashboard__link mt-5">
+              <div
+                className="dashboard__link mt-5"
+                style={{ textAlign: "left" }}
+              >
                 <p>
                   <Link className="link" to="/bookings">
                     <span>
@@ -58,6 +61,14 @@ const AddSpot = () => {
                     <span>
                       <FontAwesomeIcon icon={faPlus} size="xs" /> Add Tourist
                       Spot
+                    </span>
+                  </Link>
+                </p>
+                <p>
+                  <Link className="link" to="/removeSpot">
+                    <span>
+                      <FontAwesomeIcon icon={faMinus} size="xs" /> Remove
+                      Tourist Spot
                     </span>
                   </Link>
                 </p>
@@ -80,9 +91,10 @@ const AddSpot = () => {
           </div>
           <div className="col-md-10 col-sm-12">
             <div className="sec__title d-flex">
-              <h3 className="pl-3">Add Orders Spot</h3>
+              <h3 className="pl-3 dashboard__header">Add a New Tourist Spot in Website</h3>
             </div>
             <div className="dashboard__content">
+              {/* used react hook form */}
               <Form className="AddSpot" onSubmit={handleSubmit(onSubmit)}>
                 <Row>
                   <Col>
@@ -95,7 +107,6 @@ const AddSpot = () => {
                   <Col>
                     <Form.Label className="mt-1">place</Form.Label>
                     <Form.Control
-                      type="number"
                       {...register("places")}
                       placeholder="places"
                     />
@@ -121,7 +132,11 @@ const AddSpot = () => {
                 <Row>
                   <Col>
                     <Form.Label className="mt-1">price</Form.Label>
-                    <Form.Control {...register("price")} placeholder="price" />
+                    <Form.Control
+                      type="number"
+                      {...register("price")}
+                      placeholder="price"
+                    />
                   </Col>
                   <Col>
                     <Form.Label className="mt-1">rating</Form.Label>
