@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
@@ -11,7 +10,7 @@ const SpotDetail = () => {
   const [bookingInfo, setBookingInfo] = useState({});
 
   useEffect(() => {
-    fetch("https://dream-world-server.vercel.app/spots")
+    fetch("https://dream-world-server-mdriyadmr968.vercel.app/spots")
       .then((res) => res.json())
       .then((data) => setSpotData(data));
   }, []);
@@ -39,21 +38,23 @@ const SpotDetail = () => {
     formData.append("price", spot.price);
     formData.append("status", bookingInfo.status);
 
-    fetch("https://dream-world-server.vercel.app/addBooking", {
+    fetch("https://dream-world-server-mdriyadmr968.vercel.app/addBooking", {
       method: "POST",
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        return data;
       })
       .then((data) => {
-        if (data) {
-          window.alert("Order placed Succesfully");
-        } else {
-          window.alert("Order didn't Placed succesfully");
-        }
-      });
+        window.alert(
+          data
+            ? "Order placed successfully"
+            : "Order did not place successfully"
+        );
+      })
+      .catch((error) => console.error(error));
 
     e.preventDefault();
   };

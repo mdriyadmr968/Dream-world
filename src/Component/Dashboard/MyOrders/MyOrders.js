@@ -30,7 +30,9 @@ const MyOrders = () => {
 
   const { email } = useParams();
   useEffect(() => {
-    fetch(`https://dream-world-server.vercel.app/bookings?email=${email}`)
+    fetch(
+      `https://dream-world-server-mdriyadmr968.vercel.app/bookings?email=${email}`
+    )
       .then((res) => res.json())
       .then((data) => setMyOrders(data));
   }, [email]);

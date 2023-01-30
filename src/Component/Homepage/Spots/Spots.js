@@ -17,7 +17,7 @@ const Spots = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://dream-world-server.vercel.app/spots")
+    fetch("https://dream-world-server-mdriyadmr968.vercel.app/spots")
       .then((res) => res.json())
       .then((data) => setSpotData(data));
   }, []);

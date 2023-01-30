@@ -25,7 +25,7 @@ const Bookings = () => {
   const [user] = useAuthState(auth);
 
   useEffect(() => {
-    fetch("https://dream-world-server.vercel.app/allBookings")
+    fetch("https://dream-world-server-mdriyadmr968.vercel.app/allBookings")
       .then((res) => res.json())
       .then((data) => setBookingInfo(data));
   }, []);
@@ -34,7 +34,7 @@ const Bookings = () => {
   const statusChange = (id, e) => {
     const updatedBookingInfo = { status: e.target.value };
 
-    fetch(`https://dream-world-server.vercel.app/update/${id}`, {
+    fetch(`https://dream-world-server-mdriyadmr968.vercel.app/update/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBookingInfo),
