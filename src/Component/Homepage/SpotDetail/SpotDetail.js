@@ -18,46 +18,59 @@ const SpotDetail = () => {
   const { id } = useParams();
 
   const spot = spotData.find((data) => data._id === id) || {};
+  console.log(spot.status);
 
-  console.log(spot);
-  console.log(id);
+  const [formData, setFormData] = useState({
+    name: "",
+    number: "",
+    email: "",
+    message: "",
+  });
 
-  const handleBlur = (e) => {
-    const newBookingInfo = { ...bookingInfo };
-    newBookingInfo[e.target.name] = e.target.value;
-    newBookingInfo.status = "pending";
-    setBookingInfo(newBookingInfo);
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+      spot: spot.title,
+      price: spot.price,
+      status: "pending",
+    });
   };
-  const handleSubmit = (e) => {
-    const formData = new FormData();
-    formData.append("name", bookingInfo.name || loggedInUser.name);
-    formData.append("number", bookingInfo.number);
-    formData.append("email", bookingInfo.email || loggedInUser.email);
-    formData.append("message", bookingInfo.message);
-    formData.append("spot", spot.title);
-    formData.append("price", spot.price);
-    formData.append("status", bookingInfo.status);
 
-    fetch("https://dream-world-server-mdriyadmr968.vercel.app/addBooking", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        return data;
-      })
-      .then((data) => {
-        window.alert(
-          data
-            ? "Order placed successfully"
-            : "Order did not place successfully"
-        );
-      })
-      .catch((error) => console.error(error));
-
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const res = await fetch(
+        "https://dream-world-server-mdriyadmr968.vercel.app/addBooking",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const result = await res.json();
+      window.alert("Booking added successfully!");
+      console.clear();
+    } catch (error) {
+      window.alert("Error adding booking: " + error);
+      console.clear();
+    }
   };
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   const response = await fetch(
+  //     "https://dream-world-server-mdriyadmr968.vercel.app/addBooking",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(formData),
+  //     }
+  //   );
+  //   const result = await response.json();
+  //   console.log(result);
+  // };
 
   return (
     <div>
@@ -96,59 +109,49 @@ const SpotDetail = () => {
           </Col>
           <Col md={4}>
             <div className="px-1 pt-5 pb-2">
-              <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                  <Form.Control
-                    onBlur={handleBlur}
-                    size="lg"
-                    value={loggedInUser.name}
-                    type="name"
+              <form onSubmit={handleSubmit}>
+                <label>
+                  Name:
+                  <input
+                    type="text"
                     name="name"
-                    placeholder="Full Name"
-                    required
+                    value={formData.name}
+                    onChange={handleChange}
                   />
-                </Form.Group>
-                <Form.Group>
-                  <Form.Control
-                    onBlur={handleBlur}
-                    size="lg"
-                    type="number"
+                </label>
+                <br />
+                <label>
+                  Number:
+                  <input
+                    type="text"
                     name="number"
-                    placeholder="Phone No."
-                    required
+                    value={formData.number}
+                    onChange={handleChange}
                   />
-                </Form.Group>
-                <Form.Group>
-                  <Form.Control
-                    onBlur={handleBlur}
-                    size="lg"
-                    value={loggedInUser.email}
+                </label>
+                <br />
+                <label>
+                  Email:
+                  <input
                     type="email"
                     name="email"
-                    placeholder="Email Address"
-                    required
+                    value={formData.email}
+                    onChange={handleChange}
                   />
-                </Form.Group>
-                <Form.Group>
-                  <Form.Control
-                    onBlur={handleBlur}
-                    size="lg"
-                    as="textarea"
-                    name="message"
-                    rows={3}
+                </label>
+                <br />
+                <label>
+                  Message:
+                  <input
                     type="text"
-                    placeholder="Message"
-                    required
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                   />
-                </Form.Group>
-                <button
-                  type="submit"
-                  size="lg"
-                  className="btn btn-danger form-control"
-                >
-                  Place Order
-                </button>
-              </Form>
+                </label>
+                <br />
+                <button type="submit">Submit</button>
+              </form>
             </div>
           </Col>
         </Row>
