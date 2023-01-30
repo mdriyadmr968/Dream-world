@@ -30,7 +30,7 @@ const MyOrders = () => {
 
   const { email } = useParams();
   useEffect(() => {
-    fetch(`https://intense-eyrie-89942.herokuapp.com/bookings?email=${email}`)
+    fetch(`https://dream-world-server.vercel.app/bookings?email=${email}`)
       .then((res) => res.json())
       .then((data) => setMyOrders(data));
   }, [email]);

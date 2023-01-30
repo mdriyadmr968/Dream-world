@@ -19,7 +19,7 @@ const RemoveSpot = () => {
   const [spotsInfo, setSpotsInfo] = useState([]);
 
   useEffect(() => {
-    fetch("https://intense-eyrie-89942.herokuapp.com/spots")
+    fetch("https://dream-world-server.vercel.app/spots")
       .then((res) => res.json())
       .then((data) => setSpotsInfo(data));
   }, []);
@@ -29,7 +29,7 @@ const RemoveSpot = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `https://intense-eyrie-89942.herokuapp.com/removeSpot/${id}`;
+      const url = `https://dream-world-server.vercel.app/removeSpot/${id}`;
       fetch(url, {
         method: "DELETE",
       })

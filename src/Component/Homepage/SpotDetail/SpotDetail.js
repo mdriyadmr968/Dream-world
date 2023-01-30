@@ -11,7 +11,7 @@ const SpotDetail = () => {
   const [bookingInfo, setBookingInfo] = useState({});
 
   useEffect(() => {
-    fetch("https://intense-eyrie-89942.herokuapp.com/spots")
+    fetch("https://dream-world-server.vercel.app/spots")
       .then((res) => res.json())
       .then((data) => setSpotData(data));
   }, []);
@@ -39,7 +39,7 @@ const SpotDetail = () => {
     formData.append("price", spot.price);
     formData.append("status", bookingInfo.status);
 
-    fetch("https://intense-eyrie-89942.herokuapp.com/addBooking", {
+    fetch("https://dream-world-server.vercel.app/addBooking", {
       method: "POST",
       body: formData,
     })

@@ -17,7 +17,7 @@ const Spots = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://intense-eyrie-89942.herokuapp.com/spots")
+    fetch("https://dream-world-server.vercel.app/spots")
       .then((res) => res.json())
       .then((data) => setSpotData(data));
   }, []);

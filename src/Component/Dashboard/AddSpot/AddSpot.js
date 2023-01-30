@@ -21,7 +21,7 @@ const AddSpot = () => {
   const onSubmit = (data) => {
     console.log(data);
     axios
-      .post("https://intense-eyrie-89942.herokuapp.com/services", data)
+      .post("https://dream-world-server.vercel.app/services", data)
       .then((res) => {
         console.log(res);
 

@@ -25,7 +25,7 @@ const Bookings = () => {
   const [user] = useAuthState(auth);
 
   useEffect(() => {
-    fetch("https://intense-eyrie-89942.herokuapp.com/allBookings")
+    fetch("https://dream-world-server.vercel.app/allBookings")
       .then((res) => res.json())
       .then((data) => setBookingInfo(data));
   }, []);
@@ -34,7 +34,7 @@ const Bookings = () => {
   const statusChange = (id, e) => {
     const updatedBookingInfo = { status: e.target.value };
 
-    fetch(`https://intense-eyrie-89942.herokuapp.com/update/${id}`, {
+    fetch(`https://dream-world-server.vercel.app/update/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBookingInfo),
