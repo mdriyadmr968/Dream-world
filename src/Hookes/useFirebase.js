@@ -3,7 +3,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 
@@ -21,35 +21,28 @@ const useFirebase = () => {
     });
   };
   const handleSignOut = () => {
-      signOut(auth)
-    .then(() => {
-      // Sign-out successful.
-    })
-    .catch((error) => {
-      // An error happened.
+    signOut(auth)
+      .then(() => {
+        alert("Sign out successful");
+      })
+      .catch((error) => {
+        alert("Error signing out");
+      });
+  };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      }
     });
-
-  }
-  
-
-    useEffect( () => {
-        onAuthStateChanged(auth, (user) => {
-          if (user) {
-              setUser(user);
-          } 
-        });
-
-    })
-
-
+  });
 
   return {
-      user, 
-      signInWithGoogle,
-      handleSignOut
-
-
-  }
+    user,
+    signInWithGoogle,
+    handleSignOut,
+  };
 };
 
 export default useFirebase;

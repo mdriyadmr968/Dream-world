@@ -57,7 +57,7 @@ const SpotDetail = () => {
 
   return (
     <div>
-      <Container className="mt-5">
+      <Container className="mt-5 pt-5">
         <Row>
           <Col md={8}>
             <img src={spot.img} alt="" className="img-fluid" />
@@ -91,7 +91,7 @@ const SpotDetail = () => {
             </p>
           </Col>
           <Col md={4}>
-            <div className="px-1 pt-5 pb-2">
+            <div className="detail-form-container">
               <form onSubmit={handleSubmit}>
                 <label>
                   Name
@@ -141,7 +141,9 @@ const SpotDetail = () => {
                   />
                 </label>
                 <br />
-                <button type="submit">Submit</button>
+                <button type="submit" className="btn btn-danger">
+                  Submit
+                </button>
               </form>
             </div>
           </Col>

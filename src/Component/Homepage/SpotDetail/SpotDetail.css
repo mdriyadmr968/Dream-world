@@ -28,3 +28,12 @@
   z-index: -2221;
 }
 
+.detail-form-container {
+  /* width: 4rem; */
+}
+.detail-form {
+  width: 300px;
+  margin: 3%;
+  border: 2px solid coral;
+  
+}
