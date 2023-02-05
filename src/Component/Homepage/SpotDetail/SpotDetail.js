@@ -37,40 +37,23 @@ const SpotDetail = () => {
     });
   };
 
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const res = await fetch(
-        "https://dream-world-server-mdriyadmr968.vercel.app/addBooking",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-      const result = await res.json();
-      window.alert("Booking added successfully!");
-      console.clear();
-    } catch (error) {
-      window.alert("Error adding booking: " + error);
-      console.clear();
-    }
+    const response = await fetch(
+      "https://dream-world-server-mdriyadmr968.vercel.app/addBooking",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+    const result = await response.json();
+    window.alert("Booking added successfully!");
   };
-
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   const response = await fetch(
-  //     "https://dream-world-server-mdriyadmr968.vercel.app/addBooking",
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(formData),
-  //     }
-  //   );
-  //   const result = await response.json();
-  //   console.log(result);
-  // };
 
   return (
     <div>
@@ -111,42 +94,50 @@ const SpotDetail = () => {
             <div className="px-1 pt-5 pb-2">
               <form onSubmit={handleSubmit}>
                 <label>
-                  Name:
+                  Name
+                  <br />
                   <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
+                    className="detail-form"
                   />
                 </label>
                 <br />
                 <label>
-                  Number:
+                  Number
+                  <br />
                   <input
                     type="text"
                     name="number"
                     value={formData.number}
                     onChange={handleChange}
+                    className="detail-form"
                   />
                 </label>
                 <br />
                 <label>
-                  Email:
+                  Email
+                  <br />
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
+                    className="detail-form"
                   />
                 </label>
                 <br />
                 <label>
-                  Message:
-                  <input
+                  Message
+                  <br />
+                  <textarea
                     type="text"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
+                    className="detail-form"
                   />
                 </label>
                 <br />
